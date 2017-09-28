@@ -9,7 +9,7 @@
 #include <fcntl.h>			// for open
 #include <unistd.h>			// for close
 #include <arpa/inet.h>
-
+#include <ctype.h>
 // Main Function
 int main(int argc, char *argv[])
 {
@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 	// length of sockaddr_in
 	unsigned int len = sizeof(struct sockaddr_in);
 	//data to be sent to the clients
-	char data[] = "Hello from Sanyam's server!\n";
+	char buf[64] = {0};
 	
 	// Converting string to unsigned long integer
 	port_no = strtoul(argv[1], NULL, 10);
@@ -61,16 +61,28 @@ int main(int argc, char *argv[])
 		close(sfd);
 		exit(4);
 	}
+	if ((cfd = accept(sfd, (struct sockaddr *)&caddr, &len)) < 0)
+	{
+		perror("accept");
+		exit(5);
+	}
 	while (1)
 	{
 		// accepting connections
-		if ((cfd = accept(sfd, (struct sockaddr *)&caddr, &len)) < 0)
-		{
-			perror("accept");
+		
+		//reciving from the client
+		if (recv(cfd, buf, sizeof(buf), 0) < 0) {
+			perror("recv");
 			exit(5);
 		}
+		int i=0;
+		while(buf[i])
+		{
+		   buf[i]=toupper(buf[i]);
+		   i++;
+		}
 		// sending message on connection
-		if (send(cfd, data, strlen(data), 0) < 0)
+		if (send(cfd, buf, strlen(buf), 0) < 0)
 		{
 			perror("send");
 			close(cfd);
@@ -78,8 +90,8 @@ int main(int argc, char *argv[])
 		}
 		//printing the port no and ip of the client
 		printf("client : %s\tConnected at %d\n", inet_ntoa(caddr.sin_addr), ntohs(caddr.sin_port));
-		close(cfd);
+		
 	}
-
+	close(cfd);
 	return 0;
 }
