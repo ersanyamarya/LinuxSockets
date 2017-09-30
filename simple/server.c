@@ -1,4 +1,11 @@
-
+// Linux Socket Programming in C
+// Server connects to a client, sends data and and print clients IP and PORT 
+/*....................................................
+* Author: Sanyam Arya
+* ersanyamarya@gmail.com
+* https://www.facebook.com/er.sanyam.arya
+* https://www.linkedin.com/in/sanyam-arya/
+......................................................*/
 #include <stdio.h>	// general purpose
 #include <stdlib.h> // general purpose
 #include <string.h> // general purpose

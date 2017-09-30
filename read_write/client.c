@@ -1,3 +1,11 @@
+// Linux Socket Programming in C
+// Client connects to a server, sends data and recieves in buf 
+/*....................................................
+* Author: Sanyam Arya
+* ersanyamarya@gmail.com
+* https://www.facebook.com/er.sanyam.arya
+* https://www.linkedin.com/in/sanyam-arya/
+......................................................*/
 #include <stdio.h>  // general purpose
 #include <stdlib.h> // general purpose
 #include <string.h> // general purpose

@@ -1,0 +1,6 @@
+Sample file to be sent over socket
+
+* Author: Sanyam Arya
+* ersanyamarya@gmail.com
+* https://www.facebook.com/er.sanyam.arya
+* https://www.linkedin.com/in/sanyam-arya/
